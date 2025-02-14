@@ -3,7 +3,7 @@
   @if (departmentsLoading) {
     <mat-progress-bar class="absolute inset-x-0 bottom-0 h-0.5" [mode]="'indeterminate'"></mat-progress-bar>
   }
-  <mat-table [dataSource]="departments" class="mat-elevation-z8">
+  <mat-table [dataSource]="departments" [trackBy]="trackByFn" class="w-full bg-transparent">
     <!-- ID Column -->
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
