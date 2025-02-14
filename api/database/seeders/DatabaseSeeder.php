@@ -17,11 +17,21 @@ class DatabaseSeeder extends Seeder
         Role::create(['name' => 'admin']);
         Role::create(['name' => 'staff']);
         Role::create(['name' => 'security-officer']);
-     
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+
+        $admin = User::factory()->create([
+            'name' => 'Admin User',
+            'email' => 'admin@dpms.test',
+        ])->assignRole('admin');
+
+        $staff = User::factory()->create([
+            'name' => 'Staff User',
+            'email' => 'staff@dpms.test',
+        ])->assignRole('staff');
+
+        $security = User::factory()->create([
+            'name' => 'Security User',
+            'email' => 'security@dpms.test',
+        ])->assignRole('security-officer');
 
         // Seeders
         $this->call([
@@ -35,6 +45,6 @@ class DatabaseSeeder extends Seeder
             PermitSeeder::class,
         ]);
 
-           User::factory(1000)->create();  
+        User::factory(1000)->create();
     }
 }
