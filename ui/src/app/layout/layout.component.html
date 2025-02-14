@@ -20,7 +20,7 @@
     class="fixed top-0 left-0 z-40 !w-64 h-screen transition-transform translate-x-0 !rounded-none"
   >
     <div class="h-full px-3 py-4 overflow-y-auto bg-gray-800">
-      <span>Personal Space</span>
+      <div class="text-xs text-gray-400 mt-2 mb-2">Personal Space</div>
       <ul class="space-y-2 font-medium">
         @for (item of menuItemsPersonal; track trackByFn($index, item)) {
           <li class="cursor-pointer" [routerLinkActive]="'bg-gray-500 rounded-lg'" [routerLink]="item.link">
@@ -35,7 +35,7 @@
           </li>
         }
       </ul>
-      <span>Security</span>
+      <div class="text-xs text-gray-400 mt-6 mb-2">Security</div>
       <ul class="space-y-2 font-medium">
         @for (item of menuItemsSecurity; track trackByFn($index, item)) {
           <li class="cursor-pointer" [routerLinkActive]="'bg-gray-500 rounded-lg'" [routerLink]="item.link">
@@ -46,7 +46,7 @@
           </li>
         }
       </ul>
-      <span>Admin</span>
+      <div class="text-xs text-gray-400 mt-6 mb-2">Admin</div>
       <ul class="space-y-2 font-medium">
         @for (item of menuItemsAdmin; track trackByFn($index, item)) {
           <li class="cursor-pointer" [routerLinkActive]="'bg-gray-500 rounded-lg'" [routerLink]="item.link">
