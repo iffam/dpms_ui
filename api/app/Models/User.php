@@ -23,6 +23,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'employee_number',
+        'department_id',
     ];
 
     /**
@@ -46,5 +48,15 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class)->withTimestamps();
+    }
+
+    public function permitRequestApplications()
+    {
+        return $this->hasMany(PermitRequestApplication::class)->withTimestamps();
     }
 }
