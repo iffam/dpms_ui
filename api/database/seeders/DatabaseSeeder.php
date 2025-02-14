@@ -34,6 +34,13 @@ class DatabaseSeeder extends Seeder
         Role::create(['name' => 'staff']);
         Role::create(['name' => 'security-officer']);
 
+        // Seeders
+        $this->call([
+            DepartmentSeeder::class,
+            ZoneSeeder::class,
+        ]);
+
+        // Dummy data
         $admin = User::factory()->create([
             'name' => 'Admin User',
             'email' => 'admin@dpms.test',
@@ -49,13 +56,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'security@dpms.test',
         ])->assignRole('security-officer');
 
-        // Seeders
-        $this->call([
-            DepartmentSeeder::class,
-            ZoneSeeder::class,
-        ]);
 
-        // Dummy data
         $this->call([
             PermitRequestApplicationSeeder::class,
             PermitSeeder::class,

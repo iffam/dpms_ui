@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/auth_user', function (Request $request) {
-    return $request->user()->load('roles');
+    return $request->user()->load(['roles', 'department']);
 })->middleware('auth:api');
 
 // Route::middleware('auth:api')->name('api.')->group(function () {
