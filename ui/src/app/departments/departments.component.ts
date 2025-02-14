@@ -1,13 +1,15 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTableModule } from '@angular/material/table';
 import { Subject, takeUntil } from 'rxjs';
 import { DepartmentService } from './departments.service';
 import { Department } from './departments.types';
-import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-departments',
-  imports: [MatTableModule, DatePipe],
+  imports: [MatTableModule, DatePipe, MatProgressBarModule, MatPaginatorModule],
   templateUrl: './departments.component.html',
   styleUrl: './departments.component.css',
 })
