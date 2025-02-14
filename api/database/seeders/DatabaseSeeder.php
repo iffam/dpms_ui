@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Artisan;
 use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
@@ -14,6 +15,21 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+
+        // Create personal access client
+        Artisan::call('passport:client', [
+            '--personal' => true,
+            '--name' => 'Personal Access Client'
+        ]);
+
+        // Create password grant client
+        Artisan::call('passport:client', [
+            '--password' => true,
+            '--name' => 'Password Grant Client',
+            '--provider' => 'users'
+        ]);
+
+
         Role::create(['name' => 'admin']);
         Role::create(['name' => 'staff']);
         Role::create(['name' => 'security-officer']);
