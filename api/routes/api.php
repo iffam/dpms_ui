@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ZoneController;
 use Illuminate\Http\Request;
@@ -10,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-Route::name('api.')->group(function () {
+Route::middleware('auth:api')->name('api.')->group(function () {
     Route::controller(DepartmentController::class)->prefix('departments')->name('departments.')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::post('/', 'store')->name('store');
@@ -27,3 +28,6 @@ Route::name('api.')->group(function () {
         Route::delete('/{id}', 'destroy')->name('destroy');
     });
 });
+
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth:api');
