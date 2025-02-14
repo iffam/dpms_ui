@@ -4,7 +4,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-layout',
@@ -81,7 +82,10 @@ export class LayoutComponent {
   /**
    * Constructor
    */
-  constructor() {}
+  constructor(
+    private _authService: AuthService,
+    private _router: Router
+  ) {}
 
   // -----------------------------------------------------------------------------------------------------
   // @ Public methods
@@ -95,5 +99,14 @@ export class LayoutComponent {
    */
   trackByFn(index: number, item: any): any {
     return item.id || index;
+  }
+
+  /**
+   * Sign out
+   */
+  signOut(): void {
+    this._authService.signOut().subscribe(() => {
+      this._router.navigate(['/sign-in']);
+    });
   }
 }

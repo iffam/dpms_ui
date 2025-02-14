@@ -1,5 +1,7 @@
 import { inject } from '@angular/core';
 import { Routes } from '@angular/router';
+import { AuthGuard } from './auth/guards/auth.guard';
+import { NoAuthGuard } from './auth/guards/noAuth.guard';
 import { LayoutComponent } from './layout/layout.component';
 import { AclComponent } from './modules/acl/acl.component';
 import { ApplicationsComponent } from './modules/applications/applications.component';
@@ -15,11 +17,15 @@ import { ZonesComponent } from './modules/zones/zones.component';
 
 export const routes: Routes = [
   {
-    path: 'login',
+    path: 'sign-in',
+    canActivate: [NoAuthGuard],
+    canActivateChild: [NoAuthGuard],
     component: LoginComponent,
   },
   {
     path: '',
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
     component: LayoutComponent,
     children: [
       {
