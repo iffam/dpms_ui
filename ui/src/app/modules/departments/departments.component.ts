@@ -11,7 +11,7 @@ import { Department } from './departments.types';
   selector: 'app-departments',
   imports: [MatTableModule, DatePipe, MatProgressBarModule, MatPaginatorModule],
   templateUrl: './departments.component.html',
-  styleUrl: './departments.component.css',
+  styleUrl: './departments.component.scss',
 })
 export class DepartmentsComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['id', 'name', 'created_at'];

@@ -4,6 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-acl',
   imports: [],
   templateUrl: './acl.component.html',
-  styleUrl: './acl.component.css',
+  styleUrl: './acl.component.scss',
 })
 export class AclComponent {}

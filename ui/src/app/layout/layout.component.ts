@@ -19,7 +19,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
     RouterLinkActive,
   ],
   templateUrl: './layout.component.html',
-  styleUrl: './layout.component.css',
+  styleUrl: './layout.component.scss',
 })
 export class LayoutComponent {
   drawerMode: 'over' | 'side' = 'side';
