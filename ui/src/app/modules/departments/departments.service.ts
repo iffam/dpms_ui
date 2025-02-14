@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, map, of, switchMap, take, tap, throwError } from 'rxjs';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 import { Department, DepartmentPaginatedList } from './departments.types';
 
 @Injectable({ providedIn: 'root' })

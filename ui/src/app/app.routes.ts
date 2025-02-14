@@ -1,11 +1,11 @@
 import { inject } from '@angular/core';
 import { Routes } from '@angular/router';
-import { AclComponent } from './acl/acl.component';
-import { ApplicationsComponent } from './applications/applications.component';
-import { DepartmentsComponent } from './departments/departments.component';
-import { DepartmentService } from './departments/departments.service';
+import { AclComponent } from './modules/acl/acl.component';
+import { ApplicationsComponent } from './modules/applications/applications.component';
 import { LayoutComponent } from './layout/layout.component';
-import { LoginComponent } from './login/login.component';
+import { DepartmentsComponent } from './modules/departments/departments.component';
+import { DepartmentService } from './modules/departments/departments.service';
+import { LoginComponent } from './modules/login/login.component';
 
 export const routes: Routes = [
   {
