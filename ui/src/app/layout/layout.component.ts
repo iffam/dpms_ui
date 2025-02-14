@@ -24,7 +24,28 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 export class LayoutComponent {
   drawerMode: 'over' | 'side' = 'side';
   drawerOpened: boolean = true;
-  menuItems: any[] = [
+  menuItemsPersonal: any[] = [
+    {
+      title: 'My  Permit',
+      icon: 'workspace_premium',
+      link: 'my-permit',
+    },
+    {
+      title: 'My Applications',
+      icon: 'folder_open',
+      link: 'my-applications',
+    },
+  ];
+
+  menuItemsSecurity: any[] = [
+    {
+      title: 'Scan',
+      icon: 'qr_code_scanner',
+      link: 'scan',
+    },
+  ];
+
+  menuItemsAdmin: any[] = [
     {
       title: 'Applications',
       icon: 'apps',
@@ -39,6 +60,21 @@ export class LayoutComponent {
       title: 'Departments',
       icon: 'business',
       link: 'departments',
+    },
+    {
+      title: 'Users',
+      icon: 'group',
+      link: 'users',
+    },
+    {
+      title: 'Zones',
+      icon: 'pin_drop',
+      link: 'zones',
+    },
+    {
+      title: 'Permits',
+      icon: 'folder_shared',
+      link: 'permits',
     },
   ];
 
