@@ -1,15 +1,18 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatTableModule } from '@angular/material/table';
 import { Subject, takeUntil } from 'rxjs';
 import { DepartmentService } from './departments.service';
 import { Department } from './departments.types';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-departments',
-  imports: [],
+  imports: [MatTableModule, DatePipe],
   templateUrl: './departments.component.html',
   styleUrl: './departments.component.css',
 })
 export class DepartmentsComponent implements OnInit, OnDestroy {
+  displayedColumns: string[] = ['id', 'name', 'created_at'];
   departmentsLoading: boolean = false;
   departments: Department[] = [];
   pagination: any;
