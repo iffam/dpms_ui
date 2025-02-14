@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('permit_request_applications', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained();
             $table->enum('permit_type', ['restricted', 'temporary', 'permanent'])->default('permanent');
+            $table->enum('status', ['approved', 'rejected', 'pending'])->default('pending');
+            $table->text('status_remarks')->nullable();
             $table->dateTime('active_at')->nullable();
             $table->dateTime('expired_at')->nullable();
             $table->jsonb('zones')->nullable();

@@ -12,6 +12,23 @@ class DepartmentSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        $departments = [
+            'Air Traffic Control',
+            'Terminal Operations',
+            'Security',
+            'Ground Handling',
+            'Aircraft Maintenance',
+            'Baggage Services',
+            'Customer Service',
+            'Airport Maintenance',
+            'Emergency Services',
+            'Cargo Operations'
+        ];
+
+        foreach ($departments as $department) {
+            \App\Models\Department::create([
+            'name' => $department
+            ]);
+        }
     }
 }

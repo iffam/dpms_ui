@@ -17,7 +17,18 @@ class DepartmentFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->randomElement([
+            'Air Traffic Control',
+            'Terminal Operations',
+            'Security',
+            'Ground Handling',
+            'Aircraft Maintenance',
+            'Baggage Services',
+            'Customer Service',
+            'Airport Maintenance',
+            'Emergency Services',
+            'Cargo Operations'
+            ]) . ' ' . fake()->unique()->numberBetween(1, 100)
         ];
     }
 }

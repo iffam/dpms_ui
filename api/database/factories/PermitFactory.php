@@ -17,7 +17,7 @@ class PermitFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'suspended_at' => rand(1, 100) <= 90 ? null : now(),
         ];
     }
 }
