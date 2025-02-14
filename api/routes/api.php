@@ -11,8 +11,7 @@ Route::get('/auth_user', function (Request $request) {
     return $request->user()->load(['roles', 'department']);
 })->middleware('auth:api');
 
-// Route::middleware('auth:api')->name('api.')->group(function () {
-Route::name('api.')->group(function () {
+Route::middleware('auth:api')->name('api.')->group(function () {
     Route::controller(DepartmentController::class)->prefix('departments')->name('departments.')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::post('/', 'store')->name('store');

@@ -34,7 +34,7 @@ class AuthController extends Controller
             'email' => $user->email,
             'created_at' => $user->created_at,
             'updated_at' => $user->updated_at,
-            'token' => $token->accessToken,
+            'accessToken' => $token->accessToken,
             'token_expires_at' => $token->token->expires_at,
         ], 200);
     }
