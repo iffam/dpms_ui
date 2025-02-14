@@ -106,7 +106,7 @@ export class LayoutComponent {
    */
   signOut(): void {
     this._authService.signOut().subscribe(() => {
-      this._router.navigate(['/sign-in']);
+      this._router.navigate(['/sign-in'], { queryParams: { redirectURL: '/' } });
     });
   }
 }
