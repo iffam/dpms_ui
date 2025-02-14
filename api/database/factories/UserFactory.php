@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Department;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -27,7 +28,6 @@ class UserFactory extends Factory
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
-            'department_id' => \App\Models\Department::inRandomOrder()->first()?->id,
             'employee_number' => fake()->unique()->numerify('EMP####'),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('ifham#321'),
@@ -51,6 +51,12 @@ class UserFactory extends Factory
             $role = Role::inRandomOrder()->first();
             if ($role) {
                 $user->roles()->attach($role->id);
+            }
+
+            $department = Department::inRandomOrder()->first();
+            if ($department) {
+                $user->department()->associate($department);
+                $user->save();
             }
 
             $submit_application = rand(1, 100) <= 75 ? false : true;
