@@ -19,7 +19,7 @@ jobs:
       - name: Build UI Service Docker Image
         working-directory: /home/github-runner/dpms_docker_compose
         run: |
-          docker-compose -f docker-compose.yml build ui
+          docker compose -f docker-compose.yml build ui
 
       - name: Mark as success
         run: echo "Workflow completed successfully"
