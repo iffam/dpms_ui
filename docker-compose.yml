@@ -45,6 +45,7 @@ services:
     restart: unless-stopped
     volumes:
       - laravel-storage-production:/var/www/storage
+      - ./.env.dpms:/var/www/.env
     env_file:
       - .env
     networks:
