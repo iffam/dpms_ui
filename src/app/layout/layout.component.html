@@ -6,7 +6,10 @@
     <div>DPMS</div>
   </div>
 
-  <div>
+  <div class="flex items-center">
+    <div class="text-xs">
+      Roles: [{{ admin ? 'Admin' : '' }}, {{ security ? 'Security' : '' }}, {{ staff ? 'Staff' : '' }}]
+    </div>
     <button (click)="signOut()" mat-icon-button aria-label="logout">
       <mat-icon class="!text-white">logout</mat-icon>
     </button>
