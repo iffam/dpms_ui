@@ -5,6 +5,7 @@ import { NoAuthGuard } from './auth/guards/noAuth.guard';
 import { LayoutComponent } from './layout/layout.component';
 import { AclComponent } from './modules/acl/acl.component';
 import { ApplicationsComponent } from './modules/applications/applications.component';
+import { ApplicationService } from './modules/applications/applications.service';
 import { DepartmentsComponent } from './modules/departments/departments.component';
 import { DepartmentService } from './modules/departments/departments.service';
 import { LoginComponent } from './modules/login/login.component';
@@ -33,6 +34,9 @@ export const routes: Routes = [
       {
         path: 'applications',
         component: ApplicationsComponent,
+        resolve: {
+          applications: () => inject(ApplicationService).getApplications(),
+        },
       },
       {
         path: 'acl',
