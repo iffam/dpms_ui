@@ -11,6 +11,7 @@ import { LoginComponent } from './modules/login/login.component';
 import { MyApplicationsComponent } from './modules/my-applications/my-applications.component';
 import { MyPermitComponent } from './modules/my-permit/my-permit.component';
 import { PermitsComponent } from './modules/permits/permits.component';
+import { PermitService } from './modules/permits/permits.service';
 import { ScanComponent } from './modules/scan/scan.component';
 import { UsersComponent } from './modules/users/users.component';
 import { UserService } from './modules/users/users.service';
@@ -66,6 +67,9 @@ export const routes: Routes = [
       {
         path: 'my-permit',
         component: MyPermitComponent,
+        resolve: {
+          myPermit: () => inject(PermitService).get(),
+        },
       },
       {
         path: 'my-applications',

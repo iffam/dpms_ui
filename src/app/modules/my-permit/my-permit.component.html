@@ -1,1 +1,27 @@
-<p>my-permit works!</p>
+@if (permit) {
+  <div class="flex items-center justify-center h-screen">
+    <div class="w-full max-w-sm border rounded-lg shadow-sm bg-gray-800 border-gray-700">
+      <div class="px-5 pb-5 text-center">
+        <h5 class="my-8 text-xl font-semibold tracking-tight text-white">
+          {{ permit.name }}
+        </h5>
+        <div class="flex items-center justify-center">
+          <div class="text-white">{{ permit.employee_number }}</div>
+        </div>
+
+        <div class="flex items-center justify-center mt-2.5 mb-5">
+          <div class="flex items-center mt-4">
+            <img class="bg-white p-2" [src]="permit.qrCode" alt="QR Code" />
+          </div>
+        </div>
+        @for (item of permit.zones; track trackByFn($index, item)) {
+          <li class="text-white">
+            {{ item }}
+          </li>
+        }
+      </div>
+    </div>
+  </div>
+} @else {
+  <p>No permit found</p>
+}
