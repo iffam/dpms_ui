@@ -10,6 +10,7 @@ import { MyPermit } from '../permits/permits.types';
   styleUrl: './my-permit.component.scss',
 })
 export class MyPermitComponent implements OnInit, OnDestroy {
+  showQrCode: boolean = false;
   permit: MyPermit | undefined;
   private _unsubscribeAll: Subject<any> = new Subject<any>();
 
@@ -29,6 +30,7 @@ export class MyPermitComponent implements OnInit, OnDestroy {
     // Selected department
     this._permitService.myPermit$.pipe(takeUntil(this._unsubscribeAll)).subscribe((permit: MyPermit | null) => {
       this.permit = permit as MyPermit;
+      this.showQrCode = this.permit.message === 'No permit found';
     });
   }
 

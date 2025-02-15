@@ -1,4 +1,4 @@
-@if (permit) {
+@if (!showQrCode && permit) {
   <div class="flex items-center justify-center h-screen">
     <div class="w-full max-w-sm border rounded-lg shadow-sm bg-gray-800 border-gray-700">
       <div class="px-5 pb-5 text-center">
@@ -23,5 +23,7 @@
     </div>
   </div>
 } @else {
-  <p>No permit found</p>
+  <div class="flex items-center justify-center h-screen">
+    <p>No permit found</p>
+  </div>
 }
