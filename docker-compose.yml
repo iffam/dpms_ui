@@ -1,4 +1,14 @@
 services:
+  ui:
+    build:
+      context: ./ui
+      dockerfile: ./Dockerfile
+    restart: unless-stopped
+    networks:
+      - dpms-production
+    ports:
+      - "${NGINX_PORT_UI:-80}:80"
+
   web:
     build:
       context: ./api
