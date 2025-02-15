@@ -1,4 +1,3 @@
-import { JsonPipe } from '@angular/common';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -10,7 +9,7 @@ import { User } from './users.types';
 
 @Component({
   selector: 'app-users',
-  imports: [MatFormFieldModule, MatInputModule, MatTableModule, MatPaginatorModule, JsonPipe],
+  imports: [MatFormFieldModule, MatInputModule, MatTableModule, MatPaginatorModule],
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss',
 })

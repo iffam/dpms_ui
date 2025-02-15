@@ -20,39 +20,45 @@
     class="fixed top-0 left-0 z-40 !w-64 h-screen transition-transform translate-x-0 !rounded-none"
   >
     <div class="h-full px-3 py-4 overflow-y-auto bg-gray-800">
-      <div class="text-xs text-gray-400 mt-2 mb-2">Personal Space</div>
-      <ul class="space-y-2 font-medium">
-        @for (item of menuItemsPersonal; track trackByFn($index, item)) {
-          <li class="cursor-pointer" [routerLinkActive]="'bg-gray-500 rounded-lg'" [routerLink]="item.link">
-            <div class="flex items-center p-2 rounded-lg text-white hover:bg-gray-700 group">
-              <mat-icon class="transition duration-75 text-gray-400 group-hover:text-white">{{ item.icon }}</mat-icon>
-              <span class="flex-1 ms-3 whitespace-nowrap">{{ item.title }}</span>
-            </div>
-          </li>
-        }
-      </ul>
-      <div class="text-xs text-gray-400 mt-6 mb-2">Security</div>
-      <ul class="space-y-2 font-medium">
-        @for (item of menuItemsSecurity; track trackByFn($index, item)) {
-          <li class="cursor-pointer" [routerLinkActive]="'bg-gray-500 rounded-lg'" [routerLink]="item.link">
-            <div class="flex items-center p-2 rounded-lg text-white hover:bg-gray-700 group">
-              <mat-icon class="transition duration-75 text-gray-400 group-hover:text-white">{{ item.icon }}</mat-icon>
-              <span class="flex-1 ms-3 whitespace-nowrap">{{ item.title }}</span>
-            </div>
-          </li>
-        }
-      </ul>
-      <div class="text-xs text-gray-400 mt-6 mb-2">Admin</div>
-      <ul class="space-y-2 font-medium">
-        @for (item of menuItemsAdmin; track trackByFn($index, item)) {
-          <li class="cursor-pointer" [routerLinkActive]="'bg-gray-500 rounded-lg'" [routerLink]="item.link">
-            <div class="flex items-center p-2 rounded-lg text-white hover:bg-gray-700 group">
-              <mat-icon class="transition duration-75 text-gray-400 group-hover:text-white">{{ item.icon }}</mat-icon>
-              <span class="flex-1 ms-3 whitespace-nowrap">{{ item.title }}</span>
-            </div>
-          </li>
-        }
-      </ul>
+      @if (staff) {
+        <div class="text-xs text-gray-400 mt-2 mb-2">Personal Space</div>
+        <ul class="space-y-2 font-medium">
+          @for (item of menuItemsPersonal; track trackByFn($index, item)) {
+            <li class="cursor-pointer" [routerLinkActive]="'bg-gray-500 rounded-lg'" [routerLink]="item.link">
+              <div class="flex items-center p-2 rounded-lg text-white hover:bg-gray-700 group">
+                <mat-icon class="transition duration-75 text-gray-400 group-hover:text-white">{{ item.icon }}</mat-icon>
+                <span class="flex-1 ms-3 whitespace-nowrap">{{ item.title }}</span>
+              </div>
+            </li>
+          }
+        </ul>
+      }
+      @if (security) {
+        <div class="text-xs text-gray-400 mt-6 mb-2">Security</div>
+        <ul class="space-y-2 font-medium">
+          @for (item of menuItemsSecurity; track trackByFn($index, item)) {
+            <li class="cursor-pointer" [routerLinkActive]="'bg-gray-500 rounded-lg'" [routerLink]="item.link">
+              <div class="flex items-center p-2 rounded-lg text-white hover:bg-gray-700 group">
+                <mat-icon class="transition duration-75 text-gray-400 group-hover:text-white">{{ item.icon }}</mat-icon>
+                <span class="flex-1 ms-3 whitespace-nowrap">{{ item.title }}</span>
+              </div>
+            </li>
+          }
+        </ul>
+      }
+      @if (admin) {
+        <div class="text-xs text-gray-400 mt-6 mb-2">Admin</div>
+        <ul class="space-y-2 font-medium">
+          @for (item of menuItemsAdmin; track trackByFn($index, item)) {
+            <li class="cursor-pointer" [routerLinkActive]="'bg-gray-500 rounded-lg'" [routerLink]="item.link">
+              <div class="flex items-center p-2 rounded-lg text-white hover:bg-gray-700 group">
+                <mat-icon class="transition duration-75 text-gray-400 group-hover:text-white">{{ item.icon }}</mat-icon>
+                <span class="flex-1 ms-3 whitespace-nowrap">{{ item.title }}</span>
+              </div>
+            </li>
+          }
+        </ul>
+      }
     </div>
   </mat-sidenav>
   <mat-sidenav-content class="!bg-gray-100">
