@@ -58,11 +58,6 @@ export class LayoutComponent implements OnInit, OnDestroy {
       link: 'applications',
     },
     {
-      title: 'ACL',
-      icon: 'lock',
-      link: 'acl',
-    },
-    {
       title: 'Departments',
       icon: 'business',
       link: 'departments',
