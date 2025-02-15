@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build UI Service Docker Image
+        working-directory: /root/dpms_docker_compose
+        run: |
+          docker-compose -f docker-compose.yml build ui
+
+      - name: Mark as success
+        run: echo "Workflow completed successfully"
