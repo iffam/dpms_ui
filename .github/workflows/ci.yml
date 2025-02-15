@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Build UI Service Docker Image
-        working-directory: /root/dpms_docker_compose
+        working-directory: /home/github-runner/dpms_docker_compose
         run: |
           docker-compose -f docker-compose.yml build ui
 
