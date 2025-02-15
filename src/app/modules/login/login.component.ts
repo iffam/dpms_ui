@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import {
   FormsModule,
   NgForm,
@@ -13,6 +13,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../auth/auth.service';
 
@@ -32,9 +33,9 @@ import { AuthService } from '../../auth/auth.service';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent implements OnInit {
+  private _snackBar = inject(MatSnackBar);
   @ViewChild('signInNgForm') signInNgForm!: NgForm;
   signInForm!: UntypedFormGroup;
-  showAlert: boolean = false;
 
   /**
    * Constructor
@@ -77,9 +78,6 @@ export class LoginComponent implements OnInit {
     // Disable the form
     this.signInForm.disable();
 
-    // Hide the alert
-    this.showAlert = false;
-
     // Sign in
     this._authService.signIn(this.signInForm.value).subscribe(
       () => {
@@ -99,15 +97,7 @@ export class LoginComponent implements OnInit {
 
         // Reset the form
         this.signInNgForm.resetForm();
-
-        // Set the alert
-        // this.alert = {
-        //   type: 'error',
-        //   message: 'Wrong email or password',
-        // };
-
-        // Show the alert
-        this.showAlert = true;
+        this._snackBar.open('Wrong email or password');
       }
     );
   }
