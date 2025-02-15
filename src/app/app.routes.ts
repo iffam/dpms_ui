@@ -13,6 +13,7 @@ import { MyPermitComponent } from './modules/my-permit/my-permit.component';
 import { PermitsComponent } from './modules/permits/permits.component';
 import { ScanComponent } from './modules/scan/scan.component';
 import { UsersComponent } from './modules/users/users.component';
+import { UserService } from './modules/users/users.service';
 import { ZonesComponent } from './modules/zones/zones.component';
 
 export const routes: Routes = [
@@ -46,6 +47,9 @@ export const routes: Routes = [
       {
         path: 'users',
         component: UsersComponent,
+        resolve: {
+          users: () => inject(UserService).getUsers(),
+        },
       },
       {
         path: 'zones',
