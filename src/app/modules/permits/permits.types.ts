@@ -4,3 +4,10 @@ export interface MyPermit {
   qrCode?: string;
   zones?: string[];
 }
+
+export interface ScanData {
+  permit_no?: number;
+  name?: string;
+  employee_number?: string;
+  zones?: string[];
+}

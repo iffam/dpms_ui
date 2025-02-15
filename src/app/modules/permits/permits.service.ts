@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, of, switchMap, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { MyPermit } from './permits.types';
+import { MyPermit, ScanData } from './permits.types';
 
 @Injectable({ providedIn: 'root' })
 export class PermitService {
@@ -35,6 +35,14 @@ export class PermitService {
     return this._httpClient.get<MyPermit>(`${environment.apiUrl}/permits/mypermit`).pipe(
       tap((permit) => {
         this._myPermit.next(permit);
+      })
+    );
+  }
+
+  Validate(data: ScanData): Observable<any> {
+    return this._httpClient.post(`${environment.apiUrl}/permits/validate`, data).pipe(
+      switchMap((response: any) => {
+        return of(response);
       })
     );
   }
