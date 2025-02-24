@@ -121,4 +121,25 @@ export class MyApplicationService {
         })
       );
   }
+
+  /**
+   * Add Application
+   *
+   * @param application
+   */
+  saveStaffApplication(application: Application): Observable<Application> {
+    this._applicationLoading.next(true);
+    return this._httpClient.post<Application>(`${environment.apiUrl}/applications/myapplication`, application).pipe(
+      map((response) => {
+        this._applicationLoading.next(false);
+        return response;
+      }),
+      tap({
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        error: (error) => {
+          this._applicationLoading.next(false);
+        },
+      })
+    );
+  }
 }
