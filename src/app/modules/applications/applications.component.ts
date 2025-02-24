@@ -1,3 +1,4 @@
+import { UpperCasePipe } from '@angular/common';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -13,7 +14,15 @@ import { Application } from './applications.types';
 
 @Component({
   selector: 'app-applications',
-  imports: [MatFormFieldModule, MatInputModule, MatTableModule, MatPaginatorModule, MatIconModule, MatMenuModule],
+  imports: [
+    MatFormFieldModule,
+    MatInputModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatIconModule,
+    MatMenuModule,
+    UpperCasePipe,
+  ],
   templateUrl: './applications.component.html',
   styleUrl: './applications.component.scss',
 })
@@ -83,11 +92,11 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     this._applicationService.getApplications((event.pageIndex + 1).toString()).subscribe();
   }
 
-  openDetailsPanel(): void {
+  openDetailsPanel(application: Application): void {
     const panelConfig = {
       panelClass: 'w-[500px]',
       data: {
-        title: 'Checklist Template',
+        application,
       },
     };
     this.panel

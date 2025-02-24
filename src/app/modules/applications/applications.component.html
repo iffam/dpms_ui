@@ -6,7 +6,7 @@
 </div>
 
 <div class="m-4">
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
     <!-- Position Column -->
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef>ID</th>
@@ -22,13 +22,20 @@
     <!-- Weight Column -->
     <ng-container matColumnDef="permit_type">
       <th mat-header-cell *matHeaderCellDef>Permit Type</th>
-      <td mat-cell *matCellDef="let element">{{ element.permit_type }}</td>
+      <td mat-cell *matCellDef="let element">{{ element.permit_type | uppercase }}</td>
     </ng-container>
 
     <!-- Symbol Column -->
     <ng-container matColumnDef="status">
       <th mat-header-cell *matHeaderCellDef>Status</th>
-      <td mat-cell *matCellDef="let element">{{ element.status }}</td>
+      <td mat-cell *matCellDef="let element">
+        <span
+          [class.text-orange-500]="element.status === 'pending'"
+          [class.text-green-500]="element.status === 'approved'"
+          [class.text-red-500]="element.status === 'rejected'"
+          >{{ element.status | uppercase }}</span
+        >
+      </td>
     </ng-container>
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef></th>
@@ -42,17 +49,13 @@
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-          <button (click)="openDetailsPanel()" mat-menu-item>
+          <button (click)="openDetailsPanel(element)" mat-menu-item>
             <mat-icon>visibility</mat-icon>
             <span>View</span>
           </button>
-          <button mat-menu-item disabled>
-            <mat-icon>voicemail</mat-icon>
-            <span>Check voice mail</span>
-          </button>
-          <button mat-menu-item>
-            <mat-icon>notifications_off</mat-icon>
-            <span>Disable alerts</span>
+          <button mat-menu-item [disabled]="element.status !== 'pending'">
+            <mat-icon>rate_review</mat-icon>
+            <span>Review</span>
           </button>
         </mat-menu>
       </td>
