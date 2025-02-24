@@ -78,6 +78,9 @@ export const routes: Routes = [
       {
         path: 'my-applications',
         component: MyApplicationsComponent,
+        resolve: {
+          applications: () => inject(ApplicationService).getMyApplications(),
+        },
       },
     ],
   },

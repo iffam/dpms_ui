@@ -3,6 +3,7 @@ export interface Application {
   permit_type?: string;
   status?: string;
   user: User;
+  zones?: string[];
   status_remarks?: string;
   justification?: string;
   active_at?: string | null;

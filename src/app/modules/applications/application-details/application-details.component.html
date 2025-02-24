@@ -1,3 +1,72 @@
 <mat-toolbar>
   <button class="cursor-pointer" (click)="closePanel()" mat-icon-button><mat-icon>close</mat-icon></button>
 </mat-toolbar>
+<div class="p-4 space-y-4">
+  <div class="card">
+    <div class="border rounded-lg border-gray-400">
+      <span class="rounded-t-lg flex bg-blue-500 p-2 text-white font-bold">Profile</span>
+      <div class="p-3">
+        <ul class="divide-base-content/25 divide-y">
+          <li class="flex justify-between p-3">
+            <span class="font-bold">Employee Number</span>
+            <span>{{ data.application ? data.application.user.employee_number : '' }}</span>
+          </li>
+          <li class="flex justify-between p-3">
+            <span class="font-bold">Name</span>
+            <span>{{ data.application ? data.application.user.name : '' }}</span>
+          </li>
+          <li class="flex justify-between p-3">
+            <span class="font-bold">Email</span>
+            <span>{{ data.application ? data.application.user.email : '' }}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="border rounded-lg border-gray-400">
+      <span class="rounded-t-lg flex bg-blue-500 p-2 text-white font-bold">Application Information</span>
+      <div class="p-3">
+        <ul class="divide-base-content/25 divide-y">
+          <li class="flex justify-between p-3">
+            <span class="font-bold pr-2">Permit Type</span>
+            <span>{{ data.application ? (data.application.permit_type | uppercase) : 'Nil' }}</span>
+          </li>
+          <li class="flex justify-between p-3">
+            <span class="font-bold pr-2">Status</span>
+            <span>{{ data.application ? (data.application.status | uppercase) : 'Nil' }}</span>
+          </li>
+          <li class="flex justify-between p-3">
+            <span class="font-bold pr-2">Status Remarks</span>
+            <span>{{
+              data.application && data.application.status_remarks ? data.application.status_remarks : 'Nil'
+            }}</span>
+          </li>
+          <li class="flex justify-between p-3">
+            <span class="font-bold pr-2">Active Date</span>
+            <span>{{ data.application && data.application.active_at ? data.application.active_at : 'Nil' }}</span>
+          </li>
+          <li class="flex justify-between p-3">
+            <span class="font-bold pr-2">Expired Date</span>
+            <span>{{ data.application && data.application.expired_at ? data.application.expired_at : 'Nil' }}</span>
+          </li>
+          <li class="flex justify-between p-3">
+            <span class="font-bold pr-2">Zones</span>
+            <span>
+              <ng-container *ngIf="data.application && data.application.zones; else noZones">
+                <ul>
+                  <li *ngFor="let zone of data.application.zones">{{ zone }}</li>
+                </ul>
+              </ng-container>
+              <ng-template #noZones>Nil</ng-template>
+            </span>
+          </li>
+          <li class="flex justify-between p-3">
+            <span class="font-bold pr-2">Justification</span>
+            <span>{{ data.application ? data.application.justification : 'Nil' }}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

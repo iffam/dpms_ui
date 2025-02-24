@@ -124,4 +124,33 @@ export class ApplicationService {
       })
     );
   }
+
+  getMyApplications(page: string = '1'): Observable<any> {
+    // Execute the visitors loading with true
+    this._applicationLoading.next(true);
+
+    return this._httpClient
+      .get<ApplicationPaginatedList>(`${environment.apiUrl}/applications/myapplication`, {
+        params: {
+          page,
+        },
+      })
+      .pipe(
+        tap((response: any) => {
+          this._applications.next(response.data);
+          this._pagination.next(response.pagination);
+          this._applicationLoading.next(false);
+        }),
+        switchMap((response) => {
+          if (response.data === null) {
+            return throwError({
+              message: 'Requested page is not available!',
+              pagination: response.data.pagination,
+            });
+          }
+
+          return of(response);
+        })
+      );
+  }
 }
