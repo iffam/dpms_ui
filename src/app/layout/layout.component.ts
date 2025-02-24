@@ -68,11 +68,6 @@ export class LayoutComponent implements OnInit, OnDestroy {
       link: 'users',
     },
     {
-      title: 'Zones',
-      icon: 'pin_drop',
-      link: 'zones',
-    },
-    {
       title: 'Permits',
       icon: 'folder_shared',
       link: 'permits',
