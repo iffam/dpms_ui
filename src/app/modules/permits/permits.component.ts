@@ -10,6 +10,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatSlidePanel } from 'ngx-mat-slide-panel';
 import { Subject, takeUntil } from 'rxjs';
+import { PermitUsageComponent } from './permit-usage/permit-usage.component';
 import { PermitService } from './permits.service';
 import { Permit } from './permits.types';
 
@@ -95,30 +96,13 @@ export class PermitsComponent implements OnInit, OnDestroy {
         permit,
       },
     };
-    // this.panel
-    //   .open(ApplicationDetailsComponent, panelConfig)
-    //   .afterDismissed()
-    //   .subscribe((d) => {
-    //     if (d) {
-    //       console.log('Panel closed with data:', d);
-    //     }
-    //   });
-  }
-
-  openReviewPanel(permit: Permit): void {
-    const panelConfig = {
-      panelClass: 'w-[500px]',
-      data: {
-        permit,
-      },
-    };
-    // this.panel
-    //   .open(ReviewApplicationComponent, panelConfig)
-    //   .afterDismissed()
-    //   .subscribe((d) => {
-    //     if (d) {
-    //       console.log('Panel closed with data:', d);
-    //     }
-    //   });
+    this.panel
+      .open(PermitUsageComponent, panelConfig)
+      .afterDismissed()
+      .subscribe((d) => {
+        if (d) {
+          console.log('Panel closed with data:', d);
+        }
+      });
   }
 }

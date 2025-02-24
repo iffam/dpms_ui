@@ -1,0 +1,25 @@
+<mat-toolbar>
+  <button class="cursor-pointer" (click)="closePanel()" mat-icon-button><mat-icon>close</mat-icon></button>
+</mat-toolbar>
+<div class="p-4 space-y-4">
+  <div class="card">
+    <div class="p-3">
+      @for (item of data.permit.usages; track trackByFn($index, item)) {
+        <ul class="border divide-base-content/25 divide-y mt-2">
+          <li class="flex justify-between p-3">
+            <span class="font-bold">ID</span>
+            <span>{{ item.id }}</span>
+          </li>
+          <li class="flex justify-between p-3">
+            <span class="font-bold">Zone</span>
+            <span>{{ item.zone?.name }}</span>
+          </li>
+          <li class="flex justify-between p-3">
+            <span class="font-bold">Time</span>
+            <span>{{ item.created_at }}</span>
+          </li>
+        </ul>
+      }
+    </div>
+  </div>
+</div>
