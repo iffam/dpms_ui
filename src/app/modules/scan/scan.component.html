@@ -64,6 +64,16 @@
     </div>
   </div>
 } @else {
+  <div class="flex items-center justify-center mt-4">
+    <mat-form-field>
+      <mat-label>Zones</mat-label>
+      <mat-select [(ngModel)]="selectedZone">
+        @for (zone of zoneList; track zone.value) {
+          <mat-option [value]="zone.value">{{ zone.label }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
   <div class="flex items-center justify-center h-screen">
     <div
       class="w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-8 dark:bg-gray-800 dark:border-gray-700"

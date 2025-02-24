@@ -1,6 +1,8 @@
 import { Component, OnDestroy } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
 import { LOAD_WASM, NgxScannerQrcodeModule, ScannerQRCodeConfig, ScannerQRCodeResult } from 'ngx-scanner-qrcode';
 import { Subject } from 'rxjs';
 import { PermitService } from '../permits/permits.service';
@@ -9,11 +11,22 @@ LOAD_WASM('assets/wasm/ngx-scanner-qrcode.wasm').subscribe();
 
 @Component({
   selector: 'app-scan',
-  imports: [NgxScannerQrcodeModule, MatIconModule, MatButtonModule],
+  imports: [NgxScannerQrcodeModule, MatIconModule, MatButtonModule, MatSelectModule, FormsModule],
   templateUrl: './scan.component.html',
   styleUrl: './scan.component.scss',
 })
 export class ScanComponent implements OnDestroy {
+  selectedZone: string = 'ZONE-A';
+  zoneList: { label: string; value: string }[] = [
+    { label: 'International Terminal', value: 'ZONE-A' },
+    { label: 'Domestic Terminal', value: 'ZONE-B' },
+    { label: 'Cargo Terminal', value: 'ZONE-C' },
+    { label: 'Seaplane Terminal', value: 'ZONE-D' },
+    { label: 'VIP Terminal', value: 'ZONE-E' },
+    { label: 'Aircraft Maintenance', value: 'ZONE-F' },
+    { label: 'Fuel Farm', value: 'ZONE-G' },
+    { label: 'Air Traffic Control', value: 'ZONE-H' },
+  ];
   status: string = 'pending';
   scanData: ScanData = {};
   private _unsubscribeAll: Subject<any> = new Subject<any>();
@@ -79,7 +92,7 @@ export class ScanComponent implements OnDestroy {
   }
 
   validate(): void {
-    this._permitService.Validate(this.scanData).subscribe((response) => {
+    this._permitService.Validate(this.scanData, this.selectedZone).subscribe((response) => {
       this.status = response.message === 'Invalid permit' ? 'invalid' : 'valid';
     });
   }

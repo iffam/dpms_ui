@@ -92,8 +92,8 @@ export class PermitService {
     );
   }
 
-  Validate(data: ScanData): Observable<any> {
-    return this._httpClient.post(`${environment.apiUrl}/permits/validate`, data).pipe(
+  Validate(data: ScanData, checkpoint: string): Observable<any> {
+    return this._httpClient.post(`${environment.apiUrl}/permits/validate`, { ...data, checkpoint }).pipe(
       switchMap((response: any) => {
         return of(response);
       })
