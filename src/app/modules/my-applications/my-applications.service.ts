@@ -2,10 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, map, of, switchMap, take, tap, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { Application, ApplicationPaginatedList } from './applications.types';
+import { Application, ApplicationPaginatedList } from '../applications/applications.types';
 
 @Injectable({ providedIn: 'root' })
-export class ApplicationService {
+export class MyApplicationService {
   selectedDepartmentChanged: BehaviorSubject<any> = new BehaviorSubject(null);
   private _applications: BehaviorSubject<Application[]> = new BehaviorSubject<Application[]>([]);
   private _applicationLoading: BehaviorSubject<boolean> = new BehaviorSubject(false);
@@ -54,38 +54,6 @@ export class ApplicationService {
   // -----------------------------------------------------------------------------------------------------
 
   /**
-   * Get departments
-   */
-  getApplications(page: string = '1'): Observable<any> {
-    // Execute the visitors loading with true
-    this._applicationLoading.next(true);
-
-    return this._httpClient
-      .get<ApplicationPaginatedList>(`${environment.apiUrl}/applications`, {
-        params: {
-          page,
-        },
-      })
-      .pipe(
-        tap((response: any) => {
-          this._applications.next(response.data);
-          this._pagination.next(response.pagination);
-          this._applicationLoading.next(false);
-        }),
-        switchMap((response) => {
-          if (response.data === null) {
-            return throwError({
-              message: 'Requested page is not available!',
-              pagination: response.data.pagination,
-            });
-          }
-
-          return of(response);
-        })
-      );
-  }
-
-  /**
    * Get application by id
    */
   getApplicationById(id: string): Observable<any> {
@@ -123,5 +91,34 @@ export class ApplicationService {
         this._application.next(null);
       })
     );
+  }
+
+  getMyApplications(page: string = '1'): Observable<any> {
+    // Execute the visitors loading with true
+    this._applicationLoading.next(true);
+
+    return this._httpClient
+      .get<ApplicationPaginatedList>(`${environment.apiUrl}/applications/myapplication`, {
+        params: {
+          page,
+        },
+      })
+      .pipe(
+        tap((response: any) => {
+          this._applications.next(response.data);
+          this._pagination.next(response.pagination);
+          this._applicationLoading.next(false);
+        }),
+        switchMap((response) => {
+          if (response.data === null) {
+            return throwError({
+              message: 'Requested page is not available!',
+              pagination: response.data.pagination,
+            });
+          }
+
+          return of(response);
+        })
+      );
   }
 }

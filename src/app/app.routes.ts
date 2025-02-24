@@ -10,6 +10,7 @@ import { DepartmentsComponent } from './modules/departments/departments.componen
 import { DepartmentService } from './modules/departments/departments.service';
 import { LoginComponent } from './modules/login/login.component';
 import { MyApplicationsComponent } from './modules/my-applications/my-applications.component';
+import { MyApplicationService } from './modules/my-applications/my-applications.service';
 import { MyPermitComponent } from './modules/my-permit/my-permit.component';
 import { PermitsComponent } from './modules/permits/permits.component';
 import { PermitService } from './modules/permits/permits.service';
@@ -79,7 +80,7 @@ export const routes: Routes = [
         path: 'my-applications',
         component: MyApplicationsComponent,
         resolve: {
-          applications: () => inject(ApplicationService).getMyApplications(),
+          applications: () => inject(MyApplicationService).getMyApplications(),
         },
       },
     ],

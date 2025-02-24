@@ -10,8 +10,8 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatSlidePanel } from 'ngx-mat-slide-panel';
 import { Subject, takeUntil } from 'rxjs';
 import { ApplicationDetailsComponent } from '../applications/application-details/application-details.component';
-import { ApplicationService } from '../applications/applications.service';
 import { Application } from '../applications/applications.types';
+import { MyApplicationService } from './my-applications.service';
 import { NewApplicationComponent } from './new-application/new-application.component';
 
 @Component({
@@ -38,12 +38,12 @@ export class MyApplicationsComponent implements OnInit, OnDestroy {
   dataSource: any;
   constructor(
     private panel: MatSlidePanel,
-    private _applicationService: ApplicationService,
+    private _myApplicationService: MyApplicationService,
     private _changeDetectorRef: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
-    this._applicationService.applications$
+    this._myApplicationService.applications$
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe((applications: Application[]) => {
         this.applications = applications;
@@ -51,14 +51,14 @@ export class MyApplicationsComponent implements OnInit, OnDestroy {
       });
 
     // user loading
-    this._applicationService.applicationLoading$
+    this._myApplicationService.applicationLoading$
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe((applicationLoading: boolean) => {
         this.applicationsLoading = applicationLoading;
       });
 
     // Pagination
-    this._applicationService.pagination$.pipe(takeUntil(this._unsubscribeAll)).subscribe((pagination) => {
+    this._myApplicationService.pagination$.pipe(takeUntil(this._unsubscribeAll)).subscribe((pagination) => {
       this.pagination = pagination;
       // Mark for check
       this._changeDetectorRef.markForCheck();
@@ -94,7 +94,7 @@ export class MyApplicationsComponent implements OnInit, OnDestroy {
   }
 
   handlePageEvent(event: PageEvent) {
-    this._applicationService.getApplications((event.pageIndex + 1).toString()).subscribe();
+    this._myApplicationService.getMyApplications((event.pageIndex + 1).toString()).subscribe();
   }
 
   openDetailsPanel(application: Application): void {
