@@ -56,7 +56,7 @@ export class ApplicationService {
   /**
    * Get departments
    */
-  getApplications(page: string = '1'): Observable<any> {
+  getApplications(page: string = '1', filter: string = 'all'): Observable<any> {
     // Execute the visitors loading with true
     this._applicationLoading.next(true);
 
@@ -64,6 +64,7 @@ export class ApplicationService {
       .get<ApplicationPaginatedList>(`${environment.apiUrl}/applications`, {
         params: {
           page,
+          filter,
         },
       })
       .pipe(

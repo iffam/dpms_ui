@@ -4,6 +4,14 @@
     <input matInput (keyup)="applyFilter($event)" #input />
   </mat-form-field>
 </div>
+<div class="flex items-center justify-end space-x-2 mr-2">
+  <mat-radio-group aria-label="Select an option" (change)="onFilterChange($event)" [(ngModel)]="selectedFilter">
+    <mat-radio-button value="all">All</mat-radio-button>
+    <mat-radio-button value="pending">Pending</mat-radio-button>
+    <mat-radio-button value="approved">Approved</mat-radio-button>
+    <mat-radio-button value="rejected">Rejected</mat-radio-button>
+  </mat-radio-group>
+</div>
 
 <div class="m-4">
   <table mat-table [dataSource]="dataSource">

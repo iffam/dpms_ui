@@ -1,10 +1,12 @@
 import { UpperCasePipe } from '@angular/common';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { MatRadioModule } from '@angular/material/radio';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatSlidePanel } from 'ngx-mat-slide-panel';
 import { Subject, takeUntil } from 'rxjs';
@@ -23,11 +25,14 @@ import { ReviewApplicationComponent } from './review-application/review-applicat
     MatIconModule,
     MatMenuModule,
     UpperCasePipe,
+    MatRadioModule,
+    FormsModule,
   ],
   templateUrl: './applications.component.html',
   styleUrl: './applications.component.scss',
 })
 export class ApplicationsComponent implements OnInit, OnDestroy {
+  selectedFilter: string = 'all';
   displayedColumns: string[] = ['id', 'name', 'permit_type', 'status', 'actions'];
   applicationsLoading: boolean = false;
   applications: Application[] = [];
@@ -125,5 +130,11 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
           console.log('Panel closed with data:', d);
         }
       });
+  }
+
+  onFilterChange(event: any) {
+    const selectedValue = event.value;
+    console.log('Selected value:', selectedValue);
+    this._applicationService.getApplications('1', selectedValue).subscribe();
   }
 }
