@@ -132,7 +132,7 @@ export class ApplicationService {
    */
   reviewStaffApplication(application: Application, id: string): Observable<Application> {
     this._applicationLoading.next(true);
-    return this._httpClient.post<Application>(`${environment.apiUrl}/applications/${id}`, application).pipe(
+    return this._httpClient.post<Application>(`${environment.apiUrl}/applications/${id}/review`, application).pipe(
       map((response) => {
         this._applicationLoading.next(false);
         return response;
