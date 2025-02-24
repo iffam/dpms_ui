@@ -11,6 +11,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { ApplicationDetailsComponent } from './application-details/application-details.component';
 import { ApplicationService } from './applications.service';
 import { Application } from './applications.types';
+import { ReviewApplicationComponent } from './review-application/review-application.component';
 
 @Component({
   selector: 'app-applications',
@@ -101,6 +102,23 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     };
     this.panel
       .open(ApplicationDetailsComponent, panelConfig)
+      .afterDismissed()
+      .subscribe((d) => {
+        if (d) {
+          console.log('Panel closed with data:', d);
+        }
+      });
+  }
+
+  openReviewPanel(application: Application): void {
+    const panelConfig = {
+      panelClass: 'w-[500px]',
+      data: {
+        application,
+      },
+    };
+    this.panel
+      .open(ReviewApplicationComponent, panelConfig)
       .afterDismissed()
       .subscribe((d) => {
         if (d) {

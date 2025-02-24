@@ -1,6 +1,6 @@
 <div class="flex w-full mt-4 ml-8 items-center justify-center">
   <mat-form-field class="w-1/2">
-    <mat-label>Filter</mat-label>
+    <mat-label>Search</mat-label>
     <input matInput (keyup)="applyFilter($event)" #input />
   </mat-form-field>
 </div>
@@ -53,7 +53,7 @@
             <mat-icon>visibility</mat-icon>
             <span>View</span>
           </button>
-          <button mat-menu-item [disabled]="element.status !== 'pending'">
+          <button (click)="openReviewPanel(element)" mat-menu-item [disabled]="element.status !== 'pending'">
             <mat-icon>rate_review</mat-icon>
             <span>Review</span>
           </button>
