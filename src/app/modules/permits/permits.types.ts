@@ -4,6 +4,7 @@ export interface MyPermit {
   employee_number?: string;
   qrCode?: string;
   zones?: string[];
+  expire_alert?: number | null;
 }
 
 export interface ScanData {
