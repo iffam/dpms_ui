@@ -1,5 +1,61 @@
 # Dpms
 
+---
+## 👨‍💼 Admin (HR Personnel) - Tasks Checklist
+### Permit Management
+-  [ ] Approve/reject permit applications
+- [ ] Provide comments/reasons for approval or rejection
+- [ ] Generate a QR code for approved permits
+### User & Role Managemen
+- [ ] Assign roles to users (Staff, Security Officer, Admin)
+- [ ] Manage user access levels (RBAC)
+### Dashboard & Reporting
+- [ ] View all permit applications
+- [ ] Filter and search permits
+- [ ] Monitor soon-to-expire permits with notifications
+- [ ] Export reports in CSV/PDF format
+
+## 👨‍💻 Staff (Employees) - Tasks Checklist
+### Permit Application
+- [ ]  Fill in the Permit Application Form with:
+    - [ ] Full Name
+    - [ ] Employee ID
+    - [ ] Department
+    - [ ] Permit Type (Restricted, Temporary, Permanent)
+    - [ ] Validity Period (From-To)
+    - [ ] Justification for the permit
+- [ ] Submit the application
+### Permit Tracking
+- [ ] Check application status (Pending, Approved, Rejected)
+- [ ] Receive approval/rejection notifications
+### Permit Management
+- [ ] View and download approved permits
+- [ ] Access and display QR code for verification
+## 👮 Security Officer - Tasks Checklist
+### Permit Verification
+- [ ] Scan QR codes of permits
+- [ ] Validate the permit against system records
+### Permit Status Checking
+- [ ] Verify details displayed after scanning:
+    - [ ] Staff Name & Department
+    - [ ] Permit Type & Expiry Date
+    - [ ] Approval Status
+    - [ ] sss
+    - [ ] sss
+### Security Alerts & Actions
+- [ ] Flag expired or invalid permits
+- [ ] Deny access to unauthorized personnel
+
+
+---
+- [x] Create Dockerfile
+- [x] Set up GitHub Actions/GitLab CI/CD
+- [x] Develop UI using TailwindCSS
+- [x] Implement role-based UI (Admin, Staff, Security Officer)
+
+
+---
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.7.
 
 ## Development server
