@@ -1,20 +1,24 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatSlidePanel } from 'ngx-mat-slide-panel';
 import { Subject, takeUntil } from 'rxjs';
+import { ApplicationDetailsComponent } from './application-details/application-details.component';
 import { ApplicationService } from './applications.service';
 import { Application } from './applications.types';
 
 @Component({
   selector: 'app-applications',
-  imports: [MatFormFieldModule, MatInputModule, MatTableModule, MatPaginatorModule],
+  imports: [MatFormFieldModule, MatInputModule, MatTableModule, MatPaginatorModule, MatIconModule, MatMenuModule],
   templateUrl: './applications.component.html',
   styleUrl: './applications.component.scss',
 })
 export class ApplicationsComponent implements OnInit, OnDestroy {
-  displayedColumns: string[] = ['id', 'name', 'permit_type', 'status'];
+  displayedColumns: string[] = ['id', 'name', 'permit_type', 'status', 'actions'];
   applicationsLoading: boolean = false;
   applications: Application[] = [];
   pagination: any;
@@ -31,6 +35,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
    */
   constructor(
     private _applicationService: ApplicationService,
+    private panel: MatSlidePanel,
     private _changeDetectorRef: ChangeDetectorRef
   ) {}
 
@@ -76,5 +81,22 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
 
   handlePageEvent(event: PageEvent) {
     this._applicationService.getApplications((event.pageIndex + 1).toString()).subscribe();
+  }
+
+  openDetailsPanel(): void {
+    const panelConfig = {
+      panelClass: 'w-[500px]',
+      data: {
+        title: 'Checklist Template',
+      },
+    };
+    this.panel
+      .open(ApplicationDetailsComponent, panelConfig)
+      .afterDismissed()
+      .subscribe((d) => {
+        if (d) {
+          console.log('Panel closed with data:', d);
+        }
+      });
   }
 }

@@ -2,3 +2,17 @@
 @use "tailwindcss";
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.mat-slide-panel-container,
+  //.mat-dialog-container,
+.mat-mdc-menu-panel {
+  padding: 0 !important;
+  background-color: white !important;
+  border-right: 1px solid;
+}
+
+.mat-slide-toggle-bar {
+    margin-left: 8px !important;
+    margin-right: 0;
+  }
