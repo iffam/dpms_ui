@@ -64,6 +64,9 @@ export const routes: Routes = [
       {
         path: 'permits',
         component: PermitsComponent,
+        resolve: {
+          permits: () => inject(PermitService).getPermits(),
+        },
       },
       {
         path: 'scan',
