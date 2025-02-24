@@ -3,48 +3,30 @@
 ---
 ## 👨‍💼 Admin (HR Personnel) - Tasks Checklist
 ### Permit Management
--  [ ] Approve/reject permit applications
-- [ ] Provide comments/reasons for approval or rejection
-- [ ] Generate a QR code for approved permits
-### User & Role Managemen
-- [ ] Assign roles to users (Staff, Security Officer, Admin)
-- [ ] Manage user access levels (RBAC)
-### Dashboard & Reporting
-- [ ] View all permit applications
-- [ ] Filter and search permits
-- [ ] Monitor soon-to-expire permits with notifications
-- [ ] Export reports in CSV/PDF format
+-  [x] Approve/reject permit applications
+- [x] Provide comments/reasons for approval or rejection
+- [x] Generate a QR code for approved permits
+### Report Pages
+- [x] View all permit applications
+- [x] Filter and search permits
+- [x] Monitor soon-to-expire permits with notifications
 
 ## 👨‍💻 Staff (Employees) - Tasks Checklist
 ### Permit Application
-- [ ]  Fill in the Permit Application Form with:
-    - [ ] Full Name
-    - [ ] Employee ID
-    - [ ] Department
-    - [ ] Permit Type (Restricted, Temporary, Permanent)
-    - [ ] Validity Period (From-To)
-    - [ ] Justification for the permit
-- [ ] Submit the application
+- [x]  Fill in the Permit Application Form
+- [x] Submit the application
 ### Permit Tracking
-- [ ] Check application status (Pending, Approved, Rejected)
-- [ ] Receive approval/rejection notifications
+- [x] Check application status (Pending, Approved, Rejected)
 ### Permit Management
-- [ ] View and download approved permits
-- [ ] Access and display QR code for verification
+- [x] Access and display QR code for verification
 ## 👮 Security Officer - Tasks Checklist
 ### Permit Verification
-- [ ] Scan QR codes of permits
-- [ ] Validate the permit against system records
-### Permit Status Checking
-- [ ] Verify details displayed after scanning:
-    - [ ] Staff Name & Department
-    - [ ] Permit Type & Expiry Date
-    - [ ] Approval Status
-    - [ ] sss
-    - [ ] sss
+- [x] Scan QR codes of permits
+- [x] Validate the permit against system records
+
 ### Security Alerts & Actions
-- [ ] Flag expired or invalid permits
-- [ ] Deny access to unauthorized personnel
+- [x] Flag expired or invalid permits
+- [x] Deny access to unauthorized personnel
 
 
 ---
